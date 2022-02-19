@@ -19,11 +19,14 @@ export default class TodosDAO {
     // Create a todo Document in Mongo by passing in todo object
     static async addTodo(name, priority, dueDate, description) {
         try {
+            
             const todoDoc = {
                 name: name, 
                 priority: priority, 
                 dueDate: dueDate, 
-                description: description}
+                description: description,
+                dateCreated: new Date()
+            }
             return await todos.insertOne(todoDoc)
         } 
         catch (error) {
