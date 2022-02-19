@@ -1,4 +1,4 @@
-import TodoDAO from '../dao/todosDAO.js'
+import TodosDAO from '../dao/todosDAO.js'
 
 class TodosController {
 
@@ -11,7 +11,8 @@ class TodosController {
             const description = req.body.description || ""
             const todo = {name: name, priority: priority, dueDate: dueDate, description:description} 
 
-            const response = await TodoDAO.addTodo(todo)
+            const response = await TodosDAO.addTodo(todo)
+            res.json({status: "success"});
 
         } catch(err) {
             console.log(err)
@@ -24,7 +25,8 @@ class TodosController {
         try{
             // const todoId = req.params.id
 
-            const response = await TodoDAO.getTodos()
+            const response = await TodosDAO.getTodos()
+            res.json(response);
 
         } catch(err) {
             console.log(err)
@@ -43,7 +45,8 @@ class TodosController {
             const todo = {name: name, priority: priority, dueDate: dueDate, description:description}
             
 
-            const response = await TodoDAO.DAO.updateTodo(todoId, todo)
+            const response = await TodosDAO.updateTodo(todoId, todo)
+            res.json({status: "success"});
 
         } catch(err) {
             console.log(err)
@@ -55,7 +58,8 @@ class TodosController {
     static async DeleteTodo(req, res) {
         try{
             const todoId = req.params.id
-            const response  = await TodoDAO.deleteTodo(todoId)
+            const response  = await TodosDAO.deleteTodo(todoId)
+            res.json({status: "success"});
 
         } catch(err) {
             console.log(err)
@@ -65,5 +69,4 @@ class TodosController {
 
 }
 
-
-export default new TodosController;
+export default TodosController;
