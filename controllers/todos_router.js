@@ -12,14 +12,12 @@ const router = express.Router();
 
 router.route('/').get(TodosController.GetTodos);
 
-router.route('/todos').get(TodosController.GetTodos);
+router.route('/priorities').get(TodosController.GetTodos);
 
-router.route('/todos/priorities').get(TodosController.GetTodos);
+router.route('/duedates').get(TodosController.GetTodos);
 
-router.route('/todos/duedates').get(TodosController.GetTodos);
+router.route('/new').post(TodosController.PostTodo);
 
-router.route('/todos/new').post(TodosController.PostTodos);
-
-router.route('/todos/:id').put(TodosController.UpdateTodo).delete(TodosController.DeleteTodo)
+router.route('/:id').put(TodosController.UpdateTodo).delete(TodosController.DeleteTodo)
 
 export default router;
