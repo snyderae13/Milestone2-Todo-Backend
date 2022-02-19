@@ -18,7 +18,7 @@ router.route('/todos/priorities').get(TodosController.GetTodos);
 
 router.route('/todos/duedates').get(TodosController.GetTodos);
 
-router.route('/todos/new').get(TodosController.GetTodos);
+router.route('/todos/new').post(TodosController.PostTodos);
 
 router.route('/todos/:id').put(TodosController.UpdateTodo).delete(TodosController.DeleteTodo)
 
