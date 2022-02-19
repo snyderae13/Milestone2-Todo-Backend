@@ -11,8 +11,10 @@ app.use(cors())
 
 //ROUTES
 
+app.use('/todos', require('./controllers/todos_controller'))
+
 app.use('*', (req, res) => {
-    res.status(404).send("Sorry! Page that was requested was not found.")
+    res.status(404).send("Sorry! The page requested was not found.")
 })
 
 export default app
