@@ -17,9 +17,13 @@ export default class TodosDAO {
     }
 
     // Create a todo Document in Mongo by passing in todo object
-    static async addTodo(todo) {
+    static async addTodo(name, priority, dueDate, description) {
         try {
-            const todoDoc = {todo: todo}
+            const todoDoc = {
+                name: name, 
+                priority: priority, 
+                dueDate: dueDate, 
+                description: description}
             return await todos.insertOne(todoDoc)
         } 
         catch (error) {
@@ -29,11 +33,15 @@ export default class TodosDAO {
     }
 
     // Update todo Document based on Mongo ObjectId. Todo is an object of new info
-    static async updateTodo(todoId, todo) {
+    static async updateTodo(todoId, name, priority, dueDate, description) {
         try {
             const updateResponse = await todos.updateOne(
                 {"_id": ObjectId(todoId)}, 
-                {$set: {todo: todo}}
+                {$set: {
+                    name: name, 
+                    priority: priority, 
+                    description: description, 
+                    dueDate: dueDate}}
             )   
             return updateResponse
         } 
