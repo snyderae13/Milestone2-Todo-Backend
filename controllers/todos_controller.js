@@ -1,8 +1,5 @@
 import TodoDAO from '../dao/todosDAO.js'
 
-
-
-
 class TodosController {
 
     //CREATE (form) - PostTodo

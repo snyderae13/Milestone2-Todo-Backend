@@ -1,6 +1,7 @@
 //DEPENDENCIES
 import express from 'express'
 import cors from 'cors'
+import todosController from './controllers/todos_controller'
 
 //APPLICATION
 const app = express()
@@ -11,7 +12,7 @@ app.use(cors())
 
 //ROUTES
 
-app.use('/todos', require('./controllers/todos_controller'))
+app.use('/todos', todosController)
 
 app.use('*', (req, res) => {
     res.status(404).send("Sorry! The page requested was not found.")
