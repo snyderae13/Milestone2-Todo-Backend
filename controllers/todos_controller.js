@@ -9,9 +9,8 @@ class TodosController {
             const priority = req.body.priority
             const dueDate = req.body.dueDate
             const description = req.body.description || ""
-            const todo = {name: name, priority: priority, dueDate: dueDate, description:description} 
 
-            const response = await TodosDAO.addTodo(todo)
+            const response = await TodosDAO.addTodo(name, priority, dueDate, description)
             res.json({status: "success"});
 
         } catch(err) {
@@ -42,10 +41,8 @@ class TodosController {
             const priority = req.body.priority
             const dueDate = req.body.dueDate
             const description = req.body.description || ""
-            const todo = {name: name, priority: priority, dueDate: dueDate, description:description}
-            
 
-            const response = await TodosDAO.updateTodo(todoId, todo)
+            const response = await TodosDAO.updateTodo(todoId, name, priority, dueDate, description)
             res.json({status: "success"});
 
         } catch(err) {
