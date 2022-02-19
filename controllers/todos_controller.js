@@ -1,12 +1,9 @@
 import TodoDAO from '../dao/todosDAO.js'
 
-//Basic syntax we're going for?
+
 
 
 class TodosController {
-//Methods go in here - class static initialization blocks?
-//Definitely missing a step, how to access each static block??
-//try block contains code we want to execute
 
     //CREATE (form) - PostTodo
     static async PostTodo(req, res) {
@@ -15,9 +12,9 @@ class TodosController {
             const priority = req.body.priority
             const dueDate = req.body.dueDate
             const description = req.body.description || ""
-            const todo = {name: name, priority: priority, dueDate: dueDate, description:description} //key-value pairs
+            const todo = {name: name, priority: priority, dueDate: dueDate, description:description} 
 
-            const response = await TodoDAO.addTodo(todo)//how to add todo?
+            const response = await TodoDAO.addTodo(todo)
 
         } catch(err) {
             console.log(err)
@@ -28,9 +25,9 @@ class TodosController {
     //READ - GetTodos
     static async GetTodos(req, res) {
         try{
-            const todoId = req.params.id
+            // const todoId = req.params.id
 
-            const response = await TodoDAO.getTodos()//show id
+            const response = await TodoDAO.getTodos()
 
         } catch(err) {
             console.log(err)
@@ -49,7 +46,7 @@ class TodosController {
             const todo = {name: name, priority: priority, dueDate: dueDate, description:description}
             
 
-            const response = await TodoDAO.DAO.updateTodo(todoId, todo)//update task
+            const response = await TodoDAO.DAO.updateTodo(todoId, todo)
 
         } catch(err) {
             console.log(err)
@@ -61,7 +58,7 @@ class TodosController {
     static async DeleteTodo(req, res) {
         try{
             const todoId = req.params.id
-            const response  = await TodoDAO.deleteTodo(todoId)//delete id
+            const response  = await TodoDAO.deleteTodo(todoId)
 
         } catch(err) {
             console.log(err)
