@@ -66,4 +66,4 @@ class TodosController {
 }
 
 
-export default TodosController;
+export default new TodosController;
