@@ -1,7 +1,7 @@
 //DEPENDENCIES
 import express from 'express'
 import cors from 'cors'
-import todosController from './controllers/todos_controller'
+import todosController from './controllers/todos_controller.js'
 
 //APPLICATION
 const app = express()
