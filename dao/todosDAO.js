@@ -27,6 +27,7 @@ export default class TodosDAO {
                 description: description,
                 dateCreated: new Date()
             }
+            
             return await todos.insertOne(todoDoc)
         } 
         catch (error) {
