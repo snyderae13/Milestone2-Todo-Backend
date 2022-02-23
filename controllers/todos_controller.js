@@ -42,8 +42,9 @@ class TodosController {
 
             const response = await TodosDAO.getTodosId(todoId)
             res.json(response);
-        } catch (error) {
-            
+        } catch (err) {
+            console.log(err)
+            res.status(404).send('Sorry! The page requested was not found.')
         }
     }
 

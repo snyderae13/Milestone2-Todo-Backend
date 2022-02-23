@@ -68,16 +68,15 @@ export default class TodosDAO {
     }
 
     static async getTodosId(todoId) {
-        let cursor;
+        
         try {
-            cursor = await todos.findOne({"_id": ObjectId(todoId)});
-            const todosList = await cursor.toArray();
-            return todosList
+           const getOne = await todos.findOne({"_id": ObjectId(todoId)});
+            return getOne
             
         } catch (error) {
-            console.eroor(`Unable to issue find comman, ${error}`);
-            let todosList = [];
-            return todosList
+            console.error(`Unable to issue find command, ${error}`);
+            let todoList = [];
+            return todoList
         }
     }
 
