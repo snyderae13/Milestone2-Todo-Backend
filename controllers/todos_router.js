@@ -12,6 +12,8 @@ const router = express.Router();
 
 router.route('/').get(TodosController.GetTodos);
 
+router.route('/:id').get(TodosController.GetTodosId);
+
 router.route('/priorities').get(TodosController.GetTodos);
 
 router.route('/duedates').get(TodosController.GetTodos);

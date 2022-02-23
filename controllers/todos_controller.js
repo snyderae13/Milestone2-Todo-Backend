@@ -34,6 +34,19 @@ class TodosController {
         }
     }
 
+    //READ- GetTodosId
+
+    static async GetTodosId(req, res) {
+        try {
+            const todoId = req.params.id
+
+            const response = await TodosDAO.getTodosId(todoId)
+            res.json(response);
+        } catch (error) {
+            
+        }
+    }
+
     //UPDATE (form) - UpdateTodo
     static async UpdateTodo(req, res) {
         try{
