@@ -27,6 +27,7 @@ export default class TodosDAO {
                 description: description,
                 dateCreated: new Date()
             }
+            
             return await todos.insertOne(todoDoc)
         } 
         catch (error) {
@@ -63,6 +64,19 @@ export default class TodosDAO {
         catch (error) {
             console.error(`Unable to delete todo: ${error}`);
             return {error: error}
+        }
+    }
+
+    static async getTodosId(todoId) {
+        
+        try {
+           const getOne = await todos.findOne({"_id": ObjectId(todoId)});
+            return getOne
+            
+        } catch (error) {
+            console.error(`Unable to issue find command, ${error}`);
+            let todoList = [];
+            return todoList
         }
     }
 
