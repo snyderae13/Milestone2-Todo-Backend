@@ -41,6 +41,8 @@ class TodosController {
             const todoId = req.params.id
 
             const response = await TodosDAO.getTodosId(todoId)
+            
+            
             res.json(response);
         } catch (err) {
             console.log(err)
