@@ -70,9 +70,11 @@ export default class TodosDAO {
     static async getTodosId(todoId) {
         let cursor;
         try {
-           cursor = await todos.findOne({"_id": ObjectId(todoId)});
+           cursor = await todos.find({"_id": ObjectId(todoId)});
+           const todo = await cursor.toArray();
            
-           return cursor
+           
+           return todo
            
             
             
@@ -87,7 +89,9 @@ export default class TodosDAO {
         let cursor;
         try{
             cursor = await todos.find();
+            
             const todosList = await cursor.toArray();
+            
             return todosList
         }
         catch(error) {
