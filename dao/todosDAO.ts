@@ -1,15 +1,16 @@
 import {ObjectId} from 'mongodb';
 
-let todos;
+let todos: { insertOne: (arg0: { name: any; priority: any; dueDate: any; description: any; dateCreated: Date; }) => any; updateOne: (arg0: { _id: any; }, arg1: { $set: { name: any; priority: any; description: any; dueDate: any; }; }) => any; deleteOne: (arg0: { _id: any; }) => any; find: (arg0: { _id: any; } | undefined) => any; } | { insertOne: (arg0: { name: any; priority: any; dueDate: any; description: any; dateCreated: Date; }) => any; updateOne: (arg0: { _id: any; }, arg1: { $set: { name: any; priority: any; description: any; dueDate: any; }; }) => any; deleteOne: (arg0: { _id: any; }) => any; find: (arg0: { _id: any; name: any; priority: any; dueDate: any; description: any; dateCreated: Date; } | undefined) => any; };
 
 export default class TodosDAO {
     // Method to connect to a specific database and collection using .env identifiers
-    static async injectDB(connect) {
+    static async injectDB(connect: { db: (arg0: string | undefined) => { (): any; new(): any; collection: { (arg0: string | undefined): { insertOne: (arg0: { name: any; priority: any; dueDate: any; description: any; dateCreated: Date; }) => any; updateOne: (arg0: { _id: any; }, arg1: { $set: { name: any; priority: any; description: any; dueDate: any; }; }) => any; deleteOne: (arg0: { _id: any; }) => any; find: (arg0: { _id: any; } | undefined) => any; } | PromiseLike<{ insertOne: (arg0: { name: any; priority: any; dueDate: any; description: any; dateCreated: Date; }) => any; updateOne: (arg0: { _id: any; }, arg1: { $set: { name: any; priority: any; description: any; dueDate: any; }; }) => any; deleteOne: (arg0: { _id: any; }) => any; find: (arg0: {_id: any; name: any; priority: any; dueDate: any; description: any; dateCreated: Date; } | undefined) => any; }>; new(): any; }; }; }) {
         if (todos) {
             return
         }
         try {
             todos = await connect.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION)
+            console.log("its connected")
         }
         catch(error) {
             console.error(`Unable to establish connection handle in todosDAO: ${error}`);
@@ -17,7 +18,7 @@ export default class TodosDAO {
     }
 
     // Create a todo Document in Mongo by passing in todo object
-    static async addTodo(name, priority, dueDate, description) {
+    static async addTodo(name: any, priority: any, dueDate: any, description: any) {
         try {
             
             const todoDoc = {
@@ -37,10 +38,10 @@ export default class TodosDAO {
     }
 
     // Update todo Document based on Mongo ObjectId. Todo is an object of new info
-    static async updateTodo(todoId, name, priority, dueDate, description) {
+    static async updateTodo(todoId: any, name: any, priority: any, dueDate: any, description: any) {
         try {
             const updateResponse = await todos.updateOne(
-                {"_id": ObjectId(todoId)}, 
+                {"_id": new ObjectId(todoId)}, 
                 {$set: {
                     name: name, 
                     priority: priority, 
@@ -56,9 +57,9 @@ export default class TodosDAO {
     }
 
     // Delete todo Document based on Mongo ObjectId
-    static async deleteTodo(todoId) {
+    static async deleteTodo(todoId: any) {
         try {
-            const deleteResponse = await todos.deleteOne({"_id": ObjectId(todoId)});
+            const deleteResponse = await todos.deleteOne({"_id": new ObjectId(todoId)});
             return deleteResponse
         } 
         catch (error) {
@@ -67,10 +68,10 @@ export default class TodosDAO {
         }
     }
 
-    static async getTodosId(todoId) {
+    static async getTodosId(todoId: any) {
         let cursor;
         try {
-           cursor = await todos.find({"_id": ObjectId(todoId)});
+           cursor = await todos.find(todoId);
            const todo = await cursor.toArray();
            
            
@@ -85,10 +86,11 @@ export default class TodosDAO {
         }
     }
 
-    static async getTodos() {
-        let cursor;
+    static async getTodos(_id: any) {
+        console.log("getting")
+        let cursor: any;
         try{
-            cursor = await todos.find();
+            cursor = await todos.find(_id);
             
             const todosList = await cursor.toArray();
             
@@ -96,8 +98,12 @@ export default class TodosDAO {
         }
         catch(error) {
             console.error(`Unable to issue find command, ${error}`);
-            let todosList = [];
+            let todosList: string[] = [];
             return todosList
         }
     }
 }
+
+
+
+
